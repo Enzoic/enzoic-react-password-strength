@@ -213,6 +213,10 @@ export default class PasswordPing extends Component {
                             loading: false,
                             score: this.state.zxcvbnScore,
                             isValid: this.state.zxcvbnScore >= this.props.minScore
+                        }, () => {
+                            if (this.props.changeCallback !== null) {
+                                this.props.changeCallback(this.state, this.state.zxcvbnResult);
+                            }
                         });
                     }
                     this.ppCurrentRequest = undefined;
