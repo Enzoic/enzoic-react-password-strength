@@ -1,0 +1,173 @@
+.PasswordPing {
+    border: 1px solid #c6c6c6;
+    box-sizing: border-box;
+    color: #090809;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    position: relative;
+}
+
+.PasswordPing-input {
+    border: none;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 14px 0 12px 14px;
+    width: calc(85% - 28px);
+}
+
+.PasswordPing-input:not(:focus).is-password-invalid {
+    color: #D1462F;
+}
+
+.PasswordPing-input:focus {
+    outline: none;
+}
+
+.PasswordPing-strength-desc {
+    color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: right;
+    transition: color 250ms ease-in-out;
+    max-width: 130px;
+    padding: 1px 4px !important;
+    margin: 0 6px 0 0;
+    display: inline;
+    background: transparent;
+    font: bold normal normal 11px/20px Helvetica Neue, Helvetica, "MS Sans Serif" !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+}
+
+.PasswordPing-strength-desc img {
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.PasswordPing-strength-desc-old {
+    color: transparent;
+    font-style: italic;
+    padding: 14px 12px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: right;
+    transition: color 250ms ease-in-out;
+    width: 15%;
+}
+
+.PasswordPing.is-strength-0 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #ff0000;
+}
+
+.PasswordPing.is-strength-1 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #ff0000;
+    /*color: #D1462F;*/
+}
+
+.PasswordPing.is-strength-2 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #ff0000;
+    /*color: #D1462F;*/
+}
+
+.PasswordPing.is-strength-3 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #57B8FF;
+    /*color: #57B8FF;*/
+}
+
+.PasswordPing.is-strength-4 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #2FBF71;
+    /*color: #2FBF71;*/
+}
+
+.PasswordPing.is-strength-5 .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: #2FBF71;
+    /*color: #2FBF71;*/
+}
+
+.PasswordPing.loading .PasswordPing-strength-desc {
+    color: #FFFFFF;
+    background-color: transparent;
+    /*color: #2FBF71;*/
+}
+
+.PasswordPing-strength-bar {
+    box-sizing: border-box;
+    height: 2px;
+    position: relative;
+    top: 1px;
+    right: 1px;
+    transition: width 300ms ease-out;
+    width: 0;
+}
+
+.PasswordPing.is-strength-0 .PasswordPing-strength-bar {
+    background: #ff0000;
+    width: 20%;
+}
+
+.PasswordPing.is-strength-1 .PasswordPing-strength-bar {
+    background: #D1462F;
+    width: 20%;
+}
+
+.PasswordPing.is-strength-2 .PasswordPing-strength-bar {
+    background: #D1462F;
+    width: 40%;
+}
+
+.PasswordPing.is-strength-3 .PasswordPing-strength-bar {
+    background: #57B8FF;
+    width: 60%;
+}
+
+.PasswordPing.is-strength-4 .PasswordPing-strength-bar {
+    background: #2FBF71;
+    width: 80%;
+}
+
+.PasswordPing.is-strength-5 .PasswordPing-strength-bar {
+    background: #2FBF71;
+    width: calc(100% + 2px);
+}
+
+.PasswordPing-spinner {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    background-color: #333;
+
+    border-radius: 100%;
+    -webkit-animation: PasswordPing-sk-scaleout 1.0s infinite ease-in-out;
+    animation: PasswordPing-sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes PasswordPing-sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes PasswordPing-sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+      }
+}

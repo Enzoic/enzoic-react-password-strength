@@ -1,0 +1,58 @@
+{
+  "name": "passwordping-react-password-strength",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">6.11.1"
+  },
+  "description": "PasswordPing password strength meter control for use in React projects",
+  "main": "dist/index.js",
+  "scripts": {
+    "build-module": "./node_modules/.bin/webpack --config=webpack/webpack.build.config.js",
+    "build-prod": "npm run build-module -p & npm run build-universal-module -p",
+    "build-universal-module": "./node_modules/.bin/webpack --config=webpack/webpack.universal.config.js",
+    "build-watch": "./node_modules/.bin/webpack --config=webpack/webpack.build.config.js --watch",
+    "start": "npm run build-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passwordping/passwordping-react-password-strength.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "PasswordPing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/passwordping/passwordping-react-password-strength/issues"
+  },
+  "homepage": "https://github.com/passwordping/passwordping-react-password-strength#readme",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "jasmine": "^2.8.0",
+    "karma": "^3.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-spec-reporter": "0.0.31",
+    "karma-webpack": "^2.0.6",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react-tooltip": "^3.6.1"
+  }
+}
