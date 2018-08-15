@@ -7,8 +7,6 @@ The [PasswordPing](https://www.passwordping.com) React Password Strength Meter r
 The password strength meter is free to use for up to 100,000 requests per month against the PasswordPing API.  After that, the meter will 
 fallback to zxcvbn checks only.  
 
-[Try it live!](https://reactpasswordstrength.netlify.com)
-
 ## Install in your project
 
 `npm install --save passwordping-react-password-strength`
