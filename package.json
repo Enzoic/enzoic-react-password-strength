@@ -1,6 +1,6 @@
 {
   "name": "passwordping-react-password-strength",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "engines": {
     "node": ">6.11.1"
   },
