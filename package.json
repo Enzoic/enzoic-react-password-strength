@@ -53,6 +53,6 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-tooltip": "^3.6.1"
+    "react-tooltip": "^3.8.4"
   }
 }
