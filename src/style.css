@@ -1,4 +1,4 @@
-.PasswordPing {
+.Enzoic {
     border: 1px solid #c6c6c6;
     box-sizing: border-box;
     color: #090809;
@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.PasswordPing-input {
+.Enzoic-input {
     border: none;
     box-sizing: border-box;
     font-size: 18px;
@@ -16,15 +16,15 @@
     width: calc(85% - 28px);
 }
 
-.PasswordPing-input:not(:focus).is-password-invalid {
+.Enzoic-input:not(:focus).is-password-invalid {
     color: #D1462F;
 }
 
-.PasswordPing-input:focus {
+.Enzoic-input:focus {
     outline: none;
 }
 
-.PasswordPing-strength-desc {
+.Enzoic-strength-desc {
     color: transparent;
     position: absolute;
     top: 50%;
@@ -42,13 +42,13 @@
     cursor: pointer;
 }
 
-.PasswordPing-strength-desc img {
+.Enzoic-strength-desc img {
     vertical-align: middle;
     position: relative;
     top: -1px;
 }
 
-.PasswordPing-strength-desc-old {
+.Enzoic-strength-desc-old {
     color: transparent;
     font-style: italic;
     padding: 14px 12px;
@@ -61,48 +61,48 @@
     width: 15%;
 }
 
-.PasswordPing.is-strength-0 .PasswordPing-strength-desc {
+.Enzoic.is-strength-0 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
 }
 
-.PasswordPing.is-strength-1 .PasswordPing-strength-desc {
-    color: #FFFFFF;
-    background-color: #ff0000;
-    /*color: #D1462F;*/
-}
-
-.PasswordPing.is-strength-2 .PasswordPing-strength-desc {
+.Enzoic.is-strength-1 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
     /*color: #D1462F;*/
 }
 
-.PasswordPing.is-strength-3 .PasswordPing-strength-desc {
+.Enzoic.is-strength-2 .Enzoic-strength-desc {
+    color: #FFFFFF;
+    background-color: #ff0000;
+    /*color: #D1462F;*/
+}
+
+.Enzoic.is-strength-3 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #57B8FF;
     /*color: #57B8FF;*/
 }
 
-.PasswordPing.is-strength-4 .PasswordPing-strength-desc {
+.Enzoic.is-strength-4 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #2FBF71;
     /*color: #2FBF71;*/
 }
 
-.PasswordPing.is-strength-5 .PasswordPing-strength-desc {
+.Enzoic.is-strength-5 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #2FBF71;
     /*color: #2FBF71;*/
 }
 
-.PasswordPing.loading .PasswordPing-strength-desc {
+.Enzoic.loading .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: transparent;
     /*color: #2FBF71;*/
 }
 
-.PasswordPing-strength-bar {
+.Enzoic-strength-bar {
     box-sizing: border-box;
     height: 2px;
     position: relative;
@@ -112,48 +112,48 @@
     width: 0;
 }
 
-.PasswordPing.is-strength-0 .PasswordPing-strength-bar {
+.Enzoic.is-strength-0 .Enzoic-strength-bar {
     background: #ff0000;
     width: 20%;
 }
 
-.PasswordPing.is-strength-1 .PasswordPing-strength-bar {
+.Enzoic.is-strength-1 .Enzoic-strength-bar {
     background: #D1462F;
     width: 20%;
 }
 
-.PasswordPing.is-strength-2 .PasswordPing-strength-bar {
+.Enzoic.is-strength-2 .Enzoic-strength-bar {
     background: #D1462F;
     width: 40%;
 }
 
-.PasswordPing.is-strength-3 .PasswordPing-strength-bar {
+.Enzoic.is-strength-3 .Enzoic-strength-bar {
     background: #57B8FF;
     width: 60%;
 }
 
-.PasswordPing.is-strength-4 .PasswordPing-strength-bar {
+.Enzoic.is-strength-4 .Enzoic-strength-bar {
     background: #2FBF71;
     width: 80%;
 }
 
-.PasswordPing.is-strength-5 .PasswordPing-strength-bar {
+.Enzoic.is-strength-5 .Enzoic-strength-bar {
     background: #2FBF71;
     width: calc(100% + 2px);
 }
 
-.PasswordPing-spinner {
+.Enzoic-spinner {
     width: 40px;
     height: 40px;
     margin: 100px auto;
     background-color: #333;
 
     border-radius: 100%;
-    -webkit-animation: PasswordPing-sk-scaleout 1.0s infinite ease-in-out;
-    animation: PasswordPing-sk-scaleout 1.0s infinite ease-in-out;
+    -webkit-animation: Enzoic-sk-scaleout 1.0s infinite ease-in-out;
+    animation: Enzoic-sk-scaleout 1.0s infinite ease-in-out;
 }
 
-@-webkit-keyframes PasswordPing-sk-scaleout {
+@-webkit-keyframes Enzoic-sk-scaleout {
     0% { -webkit-transform: scale(0) }
     100% {
         -webkit-transform: scale(1.0);
@@ -161,7 +161,7 @@
     }
 }
 
-@keyframes PasswordPing-sk-scaleout {
+@keyframes Enzoic-sk-scaleout {
     0% {
         -webkit-transform: scale(0);
         transform: scale(0);

@@ -6,7 +6,7 @@ module.exports = {
         path: __dirname,
         filename: '../dist/universal.js',
         libraryTarget: 'umd',
-        library: 'PasswordPingReactPasswordMeter',
+        library: 'EnzoicReactPasswordMeter',
     },
     module: {
         rules: [

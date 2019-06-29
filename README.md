@@ -1,22 +1,22 @@
-# PasswordPing React Password Strength Meter 
+# Enzoic React Password Strength Meter 
 
-The [PasswordPing](https://www.passwordping.com) React Password Strength Meter replaces existing password strength meters for signup and password change forms.
+The [Enzoic](https://www.enzoic.com) React Password Strength Meter replaces existing password strength meters for signup and password change forms.
  It not only provides a typical, algorithmic strength estimation, based on the [zxcvbn](https://github.com/dropbox/zxcvbn) library, 
- but also verifies that the password is not known to be compromised by checking it against PasswordPing's Passwords API.
+ but also verifies that the password is not known to be compromised by checking it against Enzoic's Passwords API.
  
-The password strength meter is free to use for up to 100,000 requests per month against the PasswordPing API.  After that, the meter will 
+The password strength meter is free to use for up to 100,000 requests per month against the Enzoic API.  After that, the meter will 
 fallback to zxcvbn checks only.  
 
 ## Install in your project
 
-`npm install --save passwordping-react-password-strength`
+`npm install --save enzoic-react-password-strength`
 
 _Note: react/react-dom is a peer dependency. You should be using this in a React project._
 
 ## Using the tool
 
 ```
-<PasswordPing
+<Enzoic
   className="customClass"
   style={{ display: 'none' }}
   minLength={5}
@@ -30,14 +30,14 @@ _Note: react/react-dom is a peer dependency. You should be using this in a React
 ### Importing
 
 If using ES6 imports:
-`import PasswordPing from 'passwordping-react-password-strength';`
+`import Enzoic from 'enzoic-react-password-strength';`
 
 Using CommonJS require:
-`var ReactPasswordStrength = require('passwordping-react-password-strength');`
+`var ReactPasswordStrength = require('enzoic-react-password-strength');`
 
 Using in a __Universal JS App__ (server-side rendering):
-- Import component from `passwordping-react-password-strength/dist/universal`
-- Include default style from `passwordping-react-password-strength/dist/style.css`.
+- Import component from `enzoic-react-password-strength/dist/universal`
+- Include default style from `enzoic-react-password-strength/dist/style.css`.
 
 ### Props
 
@@ -57,7 +57,7 @@ Using in a __Universal JS App__ (server-side rendering):
 
 - Minimum score acceptable for password to be considered valid
 - Scale from 0 - 5.  The score values are as follows:
-    - 0: Hacked indicates the password is known by PasswordPing to be compromised
+    - 0: Hacked indicates the password is known by Enzoic to be compromised
     - 1: Very Weak - equivalent to zxcvbn score of 0
     - 2: Weak - equivalent to zxcvbn score of 1
     - 3: Medium - equivalent to zxcvbn score of 2
@@ -101,13 +101,13 @@ to prevent these from being used as part of user passwords.
 ### Classes
 
 _All styling is applied with CSS classes to allow custom styling and overriding._
-- `PasswordPing` - namespace class and component wrapper
+- `Enzoic` - namespace class and component wrapper
 - `is-strength-{0-5}` - modifier class indicating password strength
-- `PasswordPing-input` - password input field
+- `Enzoic-input` - password input field
 - `is-password-valid` - modifier class indicating valid password
 - `is-password-invalid` - modifier class indicating invalid password (only applies if password length > 0)
-- `PasswordPing-strength-bar` - color bar indicating password strength
-- `PasswordPing-strength-desc` - text indicating password strength
+- `Enzoic-strength-bar` - color bar indicating password strength
+- `Enzoic-strength-desc` - text indicating password strength
 
 ### Acknowledgements
 

@@ -3,7 +3,7 @@ import './style.css';
 import React, {Component} from 'react';
 import {zxcvbn, isZxcvbnLoaded} from './zxcvbn';
 import PropTypes from 'prop-types';
-import strings from './strings/passwordping_strings';
+import strings from './strings/enzoic_strings';
 import sha1 from './hashes/sha1';
 import sha256 from './hashes/sha256';
 import md5 from './hashes/md5';
@@ -11,7 +11,7 @@ import warning from '../assets/warning.png';
 import info from '../assets/info.png';
 import ReactTooltip from 'react-tooltip';
 
-export default class PasswordPing extends Component {
+export default class Enzoic extends Component {
     static propTypes = {
         changeCallback: PropTypes.func,
         className: PropTypes.string,
@@ -65,11 +65,11 @@ export default class PasswordPing extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.checkPasswordWhenReady = this.checkPasswordWhenReady.bind(this);
         this.checkPassword = this.checkPassword.bind(this);
-        this.checkPasswordAgainstPasswordPing = this.checkPasswordAgainstPasswordPing.bind(this);
+        this.checkPasswordAgainstEnzoic = this.checkPasswordAgainstEnzoic.bind(this);
         this.isTooShort = this.isTooShort.bind(this);
 
-        this.apiURL = 'https://api.passwordping.com';
-        this.rootDomain = PasswordPing.getRootDomain(window.location.hostname);
+        this.apiURL = 'https://api.enzoic.com';
+        this.rootDomain = Enzoic.getRootDomain(window.location.hostname);
     }
 
     componentDidMount() {
@@ -144,12 +144,12 @@ export default class PasswordPing extends Component {
         if (this.checkTimer) {
             clearTimeout(this.checkTimer);
         }
-        this.checkTimer = setTimeout(this.checkPasswordAgainstPasswordPing.bind(this, passwordToCheck), 500);
+        this.checkTimer = setTimeout(this.checkPasswordAgainstEnzoic.bind(this, passwordToCheck), 500);
 
         const zxcvbnResult = zxcvbn(passwordToCheck, this.props.userInputs);
         const zxcvbnScore = zxcvbnResult.score + 1;
 
-        // store zxcvbn results and set state to loading while PasswordPing check is processing
+        // store zxcvbn results and set state to loading while Enzoic check is processing
         this.setState({
             isValid: this.state.score >= this.props.minScore,
             score: this.state.score,
@@ -159,7 +159,7 @@ export default class PasswordPing extends Component {
         });
     }
 
-    checkPasswordAgainstPasswordPing(passwordToCheck) {
+    checkPasswordAgainstEnzoic(passwordToCheck) {
         // if we already had an outstanding request in progress, cancel
         if (this.ppCurrentRequest) {
             this.ppCurrentRequest.abort();
@@ -284,7 +284,7 @@ export default class PasswordPing extends Component {
             return strings.breachedPasswordMessage;
         }
         else if (score < 4) {
-            return PasswordPing.getMessageFromZXCVBNResult(zxcvbnresult);
+            return Enzoic.getMessageFromZXCVBNResult(zxcvbnresult);
         }
         return '';
     }
@@ -304,9 +304,9 @@ export default class PasswordPing extends Component {
             tooShortWord
         } = this.props;
 
-        const inputClasses = ['PasswordPing-input'];
+        const inputClasses = ['Enzoic-input'];
         const wrapperClasses = [
-            'PasswordPing',
+            'Enzoic',
             className ? className : '',
             password.length > 0 && loading === false ? `is-strength-${score}` : '',
             loading ? 'loading' : ''
@@ -314,14 +314,14 @@ export default class PasswordPing extends Component {
 
         const strengthDesc = (
             loading === true
-                ? (<div className="PasswordPing-spinner"></div>)//(<img src={loader} style={{display: 'inline-block'}}/>)
+                ? (<div className="Enzoic-spinner"></div>)//(<img src={loader} style={{display: 'inline-block'}}/>)
                 : this.isTooShort(password)
                     ? tooShortWord
                     : scoreWords[score]
         );
 
         const tooltip = (
-            PasswordPing.getScoreTooltip(score, this.state.zxcvbnResult)
+            Enzoic.getScoreTooltip(score, this.state.zxcvbnResult)
         );
 
         if (isValid === true) {
@@ -344,9 +344,9 @@ export default class PasswordPing extends Component {
                     onChange={this.handleChange}
                     value={password}
                 />
-                <div className="PasswordPing-strength-bar"/>
+                <div className="Enzoic-strength-bar"/>
                 <span data-tip={tooltip} data-html={true} data-border={true}
-                      className="PasswordPing-strength-desc">{strengthDesc}</span>
+                      className="Enzoic-strength-desc">{strengthDesc}</span>
                 <ReactTooltip/>
             </div>
         );

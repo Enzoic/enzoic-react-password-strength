@@ -7,7 +7,7 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 const scoring = require('./scoring');
-import strings from '../strings/passwordping_strings';
+import strings from '../strings/enzoic_strings';
 
 var feedback = {
     default_feedback: {

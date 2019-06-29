@@ -1,10 +1,10 @@
 {
-  "name": "passwordping-react-password-strength",
+  "name": "enzoic-react-password-strength",
   "version": "1.1.1",
   "engines": {
     "node": ">6.11.1"
   },
-  "description": "PasswordPing password strength meter control for use in React projects",
+  "description": "Enzoic password strength meter control for use in React projects",
   "main": "dist/index.js",
   "scripts": {
     "build-module": "./node_modules/.bin/webpack --config=webpack/webpack.build.config.js",
@@ -15,17 +15,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/passwordping/passwordping-react-password-strength.git"
+    "url": "git+https://github.com/enzoic/enzoic-react-password-strength.git"
   },
   "keywords": [
     "react"
   ],
-  "author": "PasswordPing",
+  "author": "Enzoic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/passwordping/passwordping-react-password-strength/issues"
+    "url": "https://github.com/enzoic/enzoic-react-password-strength/issues"
   },
-  "homepage": "https://github.com/passwordping/passwordping-react-password-strength#readme",
+  "homepage": "https://github.com/enzoic/enzoic-react-password-strength#readme",
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",

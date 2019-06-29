@@ -12,8 +12,8 @@ import Utils from './utils';
  *
  * @namespace
  */
-const PasswordPing = {};
-PasswordPing.Sha1 = {};
+const Enzoic = {};
+Enzoic.Sha1 = {};
 
 
 /**
@@ -22,7 +22,7 @@ PasswordPing.Sha1 = {};
  * @param   {string} msg - (Unicode) string to be hashed.
  * @returns {string} Hash of msg as hex character string.
  */
-PasswordPing.Sha1.hash = function(msg) {
+Enzoic.Sha1.hash = function(msg) {
     // convert string to UTF-8, as SHA only deals with byte-streams
     msg = msg.utf8Encode();
 
@@ -73,7 +73,7 @@ PasswordPing.Sha1.hash = function(msg) {
         // 3 - main loop
         for (var t=0; t<80; t++) {
             var s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
-            var T = (Utils.ROTL(a,5) + PasswordPing.Sha1.f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
+            var T = (Utils.ROTL(a,5) + Enzoic.Sha1.f(s,b,c,d) + e + K[s] + W[t]) & 0xffffffff;
             e = d;
             d = c;
             c = Utils.ROTL(b, 30);
@@ -98,7 +98,7 @@ PasswordPing.Sha1.hash = function(msg) {
  * Function 'f' [§4.1.1].
  * @private
  */
-PasswordPing.Sha1.f = function(s, x, y, z)  {
+Enzoic.Sha1.f = function(s, x, y, z)  {
     switch (s) {
         case 0: return (x & y) ^ (~x & z);           // Ch()
         case 1: return  x ^ y  ^  z;                 // Parity()
@@ -131,4 +131,4 @@ if (typeof String.prototype.utf8Decode == 'undefined') {
     };
 }
 
-export default PasswordPing.Sha1;
+export default Enzoic.Sha1;

@@ -12,8 +12,8 @@ import Utils from './utils';
  *
  * @namespace
  */
-const PasswordPing = {};
-PasswordPing.Sha256 = {};
+const Enzoic = {};
+Enzoic.Sha256 = {};
 
 
 /**
@@ -22,7 +22,7 @@ PasswordPing.Sha256 = {};
  * @param   {string} msg - String to be hashed
  * @returns {string} Hash of msg as hex character string
  */
-PasswordPing.Sha256.hash = function(msg) {
+Enzoic.Sha256.hash = function(msg) {
     // convert string to UTF-8, as SHA only deals with byte-streams
     msg = msg.utf8Encode();
 
@@ -70,15 +70,15 @@ PasswordPing.Sha256.hash = function(msg) {
 
         // 1 - prepare message schedule 'W'
         for (var t=0;  t<16; t++) W[t] = M[i][t];
-        for (var t=16; t<64; t++) W[t] = (PasswordPing.Sha256.σ1(W[t-2]) + W[t-7] + PasswordPing.Sha256.σ0(W[t-15]) + W[t-16]) & 0xffffffff;
+        for (var t=16; t<64; t++) W[t] = (Enzoic.Sha256.σ1(W[t-2]) + W[t-7] + Enzoic.Sha256.σ0(W[t-15]) + W[t-16]) & 0xffffffff;
 
         // 2 - initialise working variables a, b, c, d, e, f, g, h with previous hash value
         a = H[0]; b = H[1]; c = H[2]; d = H[3]; e = H[4]; f = H[5]; g = H[6]; h = H[7];
 
         // 3 - main loop (note 'addition modulo 2^32')
         for (var t=0; t<64; t++) {
-            var T1 = h + PasswordPing.Sha256.Σ1(e) + PasswordPing.Sha256.Ch(e, f, g) + K[t] + W[t];
-            var T2 =     PasswordPing.Sha256.Σ0(a) + PasswordPing.Sha256.Maj(a, b, c);
+            var T1 = h + Enzoic.Sha256.Σ1(e) + Enzoic.Sha256.Ch(e, f, g) + K[t] + W[t];
+            var T2 =     Enzoic.Sha256.Σ0(a) + Enzoic.Sha256.Maj(a, b, c);
             h = g;
             g = f;
             f = e;
@@ -109,11 +109,11 @@ PasswordPing.Sha256.hash = function(msg) {
  * Logical functions [§4.1.2].
  * @private
  */
-PasswordPing.Sha256.Σ0  = function(x) { return Utils.ROTR(2,  x) ^ Utils.ROTR(13, x) ^ Utils.ROTR(22, x); };
-PasswordPing.Sha256.Σ1  = function(x) { return Utils.ROTR(6,  x) ^ Utils.ROTR(11, x) ^ Utils.ROTR(25, x); };
-PasswordPing.Sha256.σ0  = function(x) { return Utils.ROTR(7,  x) ^ Utils.ROTR(18, x) ^ (x>>>3);  };
-PasswordPing.Sha256.σ1  = function(x) { return Utils.ROTR(17, x) ^ Utils.ROTR(19, x) ^ (x>>>10); };
-PasswordPing.Sha256.Ch  = function(x, y, z) { return (x & y) ^ (~x & z); };
-PasswordPing.Sha256.Maj = function(x, y, z) { return (x & y) ^ (x & z) ^ (y & z); };
+Enzoic.Sha256.Σ0  = function(x) { return Utils.ROTR(2,  x) ^ Utils.ROTR(13, x) ^ Utils.ROTR(22, x); };
+Enzoic.Sha256.Σ1  = function(x) { return Utils.ROTR(6,  x) ^ Utils.ROTR(11, x) ^ Utils.ROTR(25, x); };
+Enzoic.Sha256.σ0  = function(x) { return Utils.ROTR(7,  x) ^ Utils.ROTR(18, x) ^ (x>>>3);  };
+Enzoic.Sha256.σ1  = function(x) { return Utils.ROTR(17, x) ^ Utils.ROTR(19, x) ^ (x>>>10); };
+Enzoic.Sha256.Ch  = function(x, y, z) { return (x & y) ^ (~x & z); };
+Enzoic.Sha256.Maj = function(x, y, z) { return (x & y) ^ (x & z) ^ (y & z); };
 
-export default PasswordPing.Sha256;
+export default Enzoic.Sha256;

@@ -17,18 +17,18 @@ const loadFrequencyLists = function (callback) {
                     callback(result);
                 }
                 else {
-                    console.log('Unable to load dictionaries for PasswordPing');
+                    console.log('Unable to load dictionaries for Enzoic');
                     callback(null);
                 }
             }
             else {
-                console.log('Unable to load dictionaries for PasswordPing');
+                console.log('Unable to load dictionaries for Enzoic');
                 callback(null);
             }
         }
     };
 
-    request.open('GET', 'https://cdn.passwordping.com/js/zxcvbn_frequency_lists_en.json', true);
+    request.open('GET', 'https://cdn.enzoic.com/js/zxcvbn_frequency_lists_en.json', true);
     request.send();
 };
 
