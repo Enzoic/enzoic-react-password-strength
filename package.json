@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enzoic/enzoic-react-password-strength.git"
+    "url": "git+https://github.com/Enzoic/enzoic-react-password-strength.git"
   },
   "keywords": [
     "react"
@@ -23,9 +23,9 @@
   "author": "Enzoic",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/enzoic/enzoic-react-password-strength/issues"
+    "url": "https://github.com/Enzoic/enzoic-react-password-strength/issues"
   },
-  "homepage": "https://github.com/enzoic/enzoic-react-password-strength#readme",
+  "homepage": "https://github.com/Enzoic/enzoic-react-password-strength#readme",
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
