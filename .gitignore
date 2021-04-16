@@ -2,4 +2,5 @@
 *.log
 /node_modules/
 /dist/
-/example/*
+/example/*\
+webpack-stats.json

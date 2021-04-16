@@ -23,6 +23,7 @@ export default class Enzoic extends Component {
         style: PropTypes.object,
         tooShortWord: PropTypes.string,
         userInputs: PropTypes.array,
+        language: PropTypes.string,
     };
 
     static defaultProps = {
@@ -31,20 +32,11 @@ export default class Enzoic extends Component {
         defaultValue: '',
         minLength: 8,
         minScore: 4,
-        scoreWords: [
-            (<span><img src={warning} style={{display: 'inline-block'}}/> {strings.strengthRatings[0]} <img
-                src={warning} style={{display: 'inline-block'}}/></span>),
-            (<span><img src={info} style={{display: 'inline-block'}}/> {strings.strengthRatings[1]}</span>),
-            (<span><img src={info} style={{display: 'inline-block'}}/> {strings.strengthRatings[2]}</span>),
-            (<span><img src={info} style={{display: 'inline-block'}}/> {strings.strengthRatings[3]}</span>),
-            strings.strengthRatings[4],
-            strings.strengthRatings[5]
-        ],
-        tooShortWord: 'Too Short',
         userInputs: [],
         requireSymbol: false,
         requireUppercase: false,
-        requireNumber: false
+        requireNumber: false,
+        language: 'en'
     };
 
     state = {
@@ -67,6 +59,11 @@ export default class Enzoic extends Component {
         this.checkPassword = this.checkPassword.bind(this);
         this.checkPasswordAgainstEnzoic = this.checkPasswordAgainstEnzoic.bind(this);
         this.isTooShort = this.isTooShort.bind(this);
+        this.getStrings = this.getStrings.bind(this);
+        this.getTooShortWord = this.getTooShortWord.bind(this);
+        this.getScoreWord = this.getScoreWord.bind(this);
+        this.getMessageFromZXCVBNResult = this.getMessageFromZXCVBNResult.bind(this);
+        this.getScoreTooltip = this.getScoreTooltip.bind(this);
 
         this.apiURL = 'https://api.enzoic.com';
         this.rootDomain = Enzoic.getRootDomain(window.location.hostname);
@@ -147,7 +144,14 @@ export default class Enzoic extends Component {
         this.checkTimer = setTimeout(this.checkPasswordAgainstEnzoic.bind(this, passwordToCheck), 500);
 
         const zxcvbnResult = zxcvbn(passwordToCheck, this.props.userInputs);
-        const zxcvbnScore = zxcvbnResult.score + 1;
+        let zxcvbnScore = zxcvbnResult.score + 1;
+
+        // add on - check for all numbers
+        if (zxcvbnScore > 1 && /^[0-9]+$/.test(passwordToCheck)) {
+            zxcvbnScore = 1;
+            zxcvbnResult.feedback.warning = this.getStrings().suggestions.allNumbers;
+            zxcvbnResult.feedback.suggestions = [];
+        }
 
         // store zxcvbn results and set state to loading while Enzoic check is processing
         this.setState({
@@ -258,7 +262,7 @@ export default class Enzoic extends Component {
         return domain;
     }
 
-    static getMessageFromZXCVBNResult(zxcvbnresult) {
+    getMessageFromZXCVBNResult(zxcvbnresult) {
         let message = '';
 
         if (zxcvbnresult && zxcvbnresult.feedback) {
@@ -268,7 +272,7 @@ export default class Enzoic extends Component {
             }
 
             if (zxcvbnresult.feedback.suggestions.length > 0) {
-                message += strings.suggestion + ":<ul>";
+                message += this.getStrings().suggestion + ":<ul>";
                 for (let i = 0; i < zxcvbnresult.feedback.suggestions.length; i++) {
                     message += "<li>" + zxcvbnresult.feedback.suggestions[i] + "</li>";
                 }
@@ -279,12 +283,12 @@ export default class Enzoic extends Component {
         return message;
     }
 
-    static getScoreTooltip(score, zxcvbnresult) {
+    getScoreTooltip(score, zxcvbnresult) {
         if (score === 0) {
-            return strings.breachedPasswordMessage;
+            return this.getStrings().breachedPasswordMessage;
         }
         else if (score < 4) {
-            return Enzoic.getMessageFromZXCVBNResult(zxcvbnresult);
+            return this.getMessageFromZXCVBNResult(zxcvbnresult);
         }
         return '';
     }
@@ -293,15 +297,43 @@ export default class Enzoic extends Component {
         return password.length < this.props.minLength;
     }
 
+    getStrings() {
+        return strings[this.props.language] || strings['en'];
+    }
+
+    getScoreWord(score) {
+        let scoreWord = this.getStrings().strengthRatings[score];
+        if (this.props.scoreWords && this.props.scoreWords.length === 6) {
+            scoreWord = this.props.scoreWords[score]
+        }
+
+        switch (score) {
+            case 0:
+                return <span>
+                    <img src={warning} style={{display: 'inline-block', position: 'relative', top: "-2px"}}/> {scoreWord} <img src={warning} style={{display: 'inline-block', position: 'relative', top: "-2px"}}/>
+                </span>;
+            case 1:
+            case 2:
+            case 3:
+                return <span>
+                    <img src={info} style={{display: 'inline-block'}}/> {scoreWord}
+                </span>;
+            default:
+                return scoreWord;
+        }
+    }
+
+    getTooShortWord() {
+        return this.props.tooShortWord || this.getStrings().tooShort;
+    }
+
     render() {
         const {score, password, isValid, loading} = this.state;
 
         const {
-            scoreWords,
             inputProps,
             className,
             style,
-            tooShortWord
         } = this.props;
 
         const inputClasses = ['Enzoic-input'];
@@ -314,14 +346,14 @@ export default class Enzoic extends Component {
 
         const strengthDesc = (
             loading === true
-                ? (<div className="Enzoic-spinner"></div>)//(<img src={loader} style={{display: 'inline-block'}}/>)
+                ? (<div className="Enzoic-spinner"></div>)
                 : this.isTooShort(password)
-                    ? tooShortWord
-                    : scoreWords[score]
+                ? this.getTooShortWord()
+                : this.getScoreWord(score)
         );
 
         const tooltip = (
-            Enzoic.getScoreTooltip(score, this.state.zxcvbnResult)
+            this.getScoreTooltip(score, this.state.zxcvbnResult)
         );
 
         if (isValid === true) {

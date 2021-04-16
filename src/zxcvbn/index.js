@@ -16,7 +16,7 @@ const isZxcvbnLoaded = function () {
     return matching.dictionariesLoaded;
 };
 
-const zxcvbn = function (password, user_inputs) {
+const zxcvbn = function (password, user_inputs, language = "en") {
     if (user_inputs == null) {
         user_inputs = [];
     }
@@ -37,7 +37,7 @@ const zxcvbn = function (password, user_inputs) {
         const val = attack_times[prop];
         result[prop] = val;
     }
-    result.feedback = feedback.get_feedback(result.score, result.sequence);
+    result.feedback = feedback.get_feedback(result.score, result.sequence, language);
     return result;
 };
 

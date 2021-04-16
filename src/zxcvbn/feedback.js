@@ -10,18 +10,11 @@ const scoring = require('./scoring');
 import strings from '../strings/enzoic_strings';
 
 var feedback = {
-    default_feedback: {
-        warning: '',
-        suggestions: [
-            strings.suggestions.defaultFeedback,
-            strings.suggestions.defaultFeedback2
-        ]
-    },
 
-    get_feedback(score, sequence) {
+    get_feedback(score, sequence, language) {
         // starting feedback
         if (sequence.length === 0) {
-            return this.default_feedback;
+            return this.get_default_feedback(language);
         }
 
         // no feedback if score is good or great.
@@ -39,8 +32,8 @@ var feedback = {
                 longest_match = match;
             }
         }
-        feedback = this.get_match_feedback(longest_match, sequence.length === 1);
-        const extra_feedback = strings.suggestions.addWord;
+        feedback = this.get_match_feedback(longest_match, sequence.length === 1, language);
+        const extra_feedback = this.get_strings(language).suggestions.addWord;
         if (feedback != null) {
             feedback.suggestions.unshift(extra_feedback);
             if (feedback.warning == null) {
@@ -55,10 +48,26 @@ var feedback = {
         return feedback;
     },
 
-    get_match_feedback(match, is_sole_match) {
+    get_strings(language) {
+        return strings[language] || strings['en'];
+    },
+
+    get_default_feedback(language) {
+        return {
+            warning: '',
+            suggestions: [
+                this.get_strings(language).suggestions.defaultFeedback,
+                this.get_strings(language).suggestions.defaultFeedback2
+            ]
+        }
+    },
+
+    get_match_feedback(match, is_sole_match, language) {
+        const strings = this.get_strings(language);
+
         switch (match.pattern) {
             case 'dictionary':
-                return this.get_dictionary_match_feedback(match, is_sole_match);
+                return this.get_dictionary_match_feedback(match, is_sole_match, language);
 
             case 'spatial':
                 var layout = match.graph.toUpperCase();
@@ -113,7 +122,9 @@ var feedback = {
         }
     },
 
-    get_dictionary_match_feedback(match, is_sole_match) {
+    get_dictionary_match_feedback(match, is_sole_match, language) {
+        const strings = this.get_strings(language);
+
         const warning = (() => {
             if (match.dictionary_name === 'passwords') {
                 if (is_sole_match && !match.l33t && !match.reversed) {
