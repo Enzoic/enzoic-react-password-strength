@@ -11,7 +11,8 @@ export default {
     "enterAPassword": "Lege ein Passwort fest",
     "passwordStrength": "Passwortstärke",
     "poweredBy": "unterstützt von",
-    "breachedPasswordMessage": "Dieses Passwort wird für Hacker bekannt und <b><u>sollten nicht verwendet werden</u></b>. Es wurde in einem oder mehreren der Datenschutzverletzungen in den letzten Jahren öffentlich ausgesetzt (LinkedIn, MySpace, Yahoo, etc.)<br/><br/>Wir <b><u>stark</u></b> empfehlen Sie wählen ein anderes Passwort und beenden Nutzung dieser.",
+    "hackedPasswordTitle": "Kompromittiertes Passwort",
+    "breachedPasswordMessage": "Dieses Passwort wird für Hacker bekannt und <b><u>sollten nicht verwendet werden</u></b>. Es wurde in einem oder mehreren der Datenschutzverletzungen in den letzten Jahren öffentlich ausgesetzt.<br/><br/>Wir <b><u>stark</u></b> empfehlen Sie wählen ein anderes Passwort und beenden Nutzung dieser.",
     "hackedPasswordMessage": "Dieses Passwort wird für Hacker bekannt und <b><u>sollten nicht verwendet werden</u></b>. Es wird gemeinsam Passwort-Knack-Wörterbücher gefunden.<br/><br/>Wir <b><u>stark</u></b> empfehlen Sie ein anderes Passwort wählen und einstellen Nutzung dieser.",
     "suggestion": "Vorschläge",
     "suggestions": {

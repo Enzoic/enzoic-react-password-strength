@@ -48,19 +48,6 @@
     top: -1px;
 }
 
-.Enzoic-strength-desc-old {
-    color: transparent;
-    font-style: italic;
-    padding: 14px 12px;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    text-align: right;
-    transition: color 250ms ease-in-out;
-    width: 15%;
-}
-
 .Enzoic.is-strength-0 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
@@ -69,37 +56,31 @@
 .Enzoic.is-strength-1 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
-    /*color: #D1462F;*/
 }
 
 .Enzoic.is-strength-2 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
-    /*color: #D1462F;*/
 }
 
 .Enzoic.is-strength-3 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #57B8FF;
-    /*color: #57B8FF;*/
 }
 
 .Enzoic.is-strength-4 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #2FBF71;
-    /*color: #2FBF71;*/
 }
 
 .Enzoic.is-strength-5 .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: #2FBF71;
-    /*color: #2FBF71;*/
 }
 
 .Enzoic.loading .Enzoic-strength-desc {
     color: #FFFFFF;
     background-color: transparent;
-    /*color: #2FBF71;*/
 }
 
 .Enzoic-strength-bar {
@@ -170,4 +151,69 @@
           transform: scale(1.0);
           opacity: 0;
       }
+}
+
+.Enzoic-tooltip-root {
+    padding: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+    min-width: 260px;
+}
+
+.Enzoic-tooltip-root.show {
+    visibility: visible;
+    transition: opacity 0.3s ease-out;
+}
+
+.Enzoic-tooltip {
+
+}
+
+.Enzoic-tooltip-title {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.Enzoic-tooltip-subtitle {
+    font-weight: bold;
+    padding-top: 14px;
+}
+
+.Enzoic-tooltip-body {
+    padding: 10px;
+}
+
+.Enzoic-tooltip.is-strength-0 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #ff0000;
+}
+
+.Enzoic-tooltip.is-strength-1 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #ff0000;
+}
+
+.Enzoic-tooltip.is-strength-2 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #ff0000;
+}
+
+.Enzoic-tooltip.is-strength-3 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #57B8FF !important;
+}
+
+.Enzoic-tooltip.is-strength-4 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #2FBF71;
+}
+
+.Enzoic-tooltip.is-strength-5 .Enzoic-tooltip-title {
+    color: #FFFFFF;
+    background-color: #2FBF71;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

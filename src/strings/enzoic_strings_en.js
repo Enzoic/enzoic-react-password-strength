@@ -11,8 +11,9 @@ export default {
     "enterAPassword": "Choose a password",
     "passwordStrength": "Password Strength",
     "poweredBy": "powered by",
-    "breachedPasswordMessage": "This password is known to hackers and <b><u>should not be used</u></b>. It was exposed publicly in one or more of the data breaches in recent years (LinkedIn, MySpace, Yahoo, etc.)<br/><br/>We <b><u>strongly</u></b> recommend you choose a different password and discontinue usage of this one.",
-    "hackedPasswordMessage": "This password is known to hackers and <b><u>should not be used</u></b>. It is found in common password cracking dictionaries.<br/><br/>We <b><u>strongly</u></b> recommend you choose a different password and discontinue usage of this one.",
+    "hackedPasswordTitle": "Compromised or \"Hacked\" Password",
+    "breachedPasswordMessage": "This password is known to hackers and <b><u>should not be used</u></b>. It has been exposed publicly in one or more data breaches.<br/><br/>Choose a different password and discontinue usage of this one.",
+    "hackedPasswordMessage": "This password is known to hackers and <b><u>should not be used</u></b>. It is found in common password cracking dictionaries.<br/><br/>Choose a different password and discontinue usage of this one.",
     "suggestion": "Suggestions",
     "suggestions": {
         "defaultFeedback": "Use a few words, avoid common phrases",

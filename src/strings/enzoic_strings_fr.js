@@ -11,7 +11,8 @@ export default {
     "enterAPassword": "Choisissez un mot de passe",
     "passwordStrength": "Fiabilité du mot de passe",
     "poweredBy": "alimenté par",
-    "breachedPasswordMessage": "Ce mot de passe est connu pour les pirates et les <b><u>ne doit pas être utilisé</u></b>. Il a été exposé publiquement dans un ou plusieurs des violations de données au cours des dernières années (LinkedIn, MySpace, Yahoo, etc.)<br/><br/>We <b><u>fortement</u></b> recommander vous choisissez un mot de passe différent et cesser l'utilisation de celui-ci.",
+    "hackedPasswordTitle": "Mot de Passe Compromis",
+    "breachedPasswordMessage": "Ce mot de passe est connu pour les pirates et les <b><u>ne doit pas être utilisé</u></b>. Il a été exposé publiquement dans un ou plusieurs des violations de données au cours des dernières années.<br/><br/>We <b><u>fortement</u></b> recommander vous choisissez un mot de passe différent et cesser l'utilisation de celui-ci.",
     "hackedPasswordMessage": "Ce mot de passe est connu pour les pirates et les <b><u>ne doit pas être utilisé</u></b>. Il se trouve dans le mot de passe commun dictionnaires de craquage.<br/><br/>We <b><u>fortement</u></b> vous recommandons de choisir un mot de passe différent et cesser l'utilisation de celui-ci.",
     "suggestion": "Suggestions",
     "suggestions": {

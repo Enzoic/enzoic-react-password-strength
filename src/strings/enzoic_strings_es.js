@@ -11,7 +11,8 @@ export default {
     "enterAPassword": "Elije una contraseña",
     "passwordStrength": "Seguridad de la contraseña",
     "poweredBy": "impulsado por",
-    "breachedPasswordMessage": "Esta contraseña se conoce a los hackers y <b><u>no debe utilizarse</u></b>. Fue expuesta públicamente en una o más de las violaciones de datos en los últimos años (LinkedIn, MySpace, Yahoo, etc.)<br/><br/>We <b><u>fuertemente</u></b> recomiendan elige una contraseña diferente y suspender el uso de éste.",
+    "hackedPasswordTitle": "Contraseña Comprometida",
+    "breachedPasswordMessage": "Esta contraseña se conoce a los hackers y <b><u>no debe utilizarse</u></b>. Fue expuesta públicamente en una o más de las violaciones de datos en los últimos años.<br/><br/>We <b><u>fuertemente</u></b> recomiendan elige una contraseña diferente y suspender el uso de éste.",
     "hackedPasswordMessage": "Esta contraseña se conoce a los hackers y <b><u>no debe utilizarse</u></b>. Se encuentra en los diccionarios de robo de contraseñas comunes. <br/><br/>We <b><u>fuertemente</u></b> recomienda elegir una contraseña diferente y suspender el uso de éste.",
     "suggestion": "Sugerencias",
     "suggestions": {
