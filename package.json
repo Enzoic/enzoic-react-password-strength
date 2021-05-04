@@ -1,6 +1,6 @@
 {
   "name": "@enzoic/enzoic-react-password-strength",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "engines": {
     "node": ">6.11.1"
   },
