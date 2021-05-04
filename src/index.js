@@ -7,8 +7,10 @@ import strings from './strings/enzoic_strings';
 import sha1 from './hashes/sha1';
 import sha256 from './hashes/sha256';
 import md5 from './hashes/md5';
-import warning from '../assets/warning.png';
-import info from '../assets/info.png';
+import warning from '../assets/warning.svg';
+import info from '../assets/info.svg';
+import eye from '../assets/eye.svg';
+import eyeOff from '../assets/eye-off.svg';
 import ReactTooltip from 'react-tooltip';
 
 export default class Enzoic extends Component {
@@ -24,6 +26,12 @@ export default class Enzoic extends Component {
         tooShortWord: PropTypes.string,
         userInputs: PropTypes.array,
         language: PropTypes.string,
+        showPasswordRevealButton: PropTypes.bool,
+        highlightStrengthBubble: PropTypes.bool,
+        inputComponent: PropTypes.object,
+        inputStyles: PropTypes.object,
+        strengthBarStyle: PropTypes.object,
+        scoreContainerOffset: PropTypes.number,
     };
 
     static defaultProps = {
@@ -36,7 +44,10 @@ export default class Enzoic extends Component {
         requireSymbol: false,
         requireUppercase: false,
         requireNumber: false,
-        language: 'en'
+        language: 'en',
+        showPasswordRevealButton: true,
+        highlightStrengthBubble: true,
+        scoreContainerOffset: 0
     };
 
     state = {
@@ -47,7 +58,8 @@ export default class Enzoic extends Component {
         password: '',
         hackedPassword: false,
         breachedPassword: false,
-        loading: false
+        loading: false,
+        showPassword: false,
     };
 
     constructor(props) {
@@ -144,7 +156,7 @@ export default class Enzoic extends Component {
         }
         this.checkTimer = setTimeout(this.checkPasswordAgainstEnzoic.bind(this, passwordToCheck), 500);
 
-        const zxcvbnResult = zxcvbn(passwordToCheck, this.props.userInputs);
+        const zxcvbnResult = zxcvbn(passwordToCheck, this.props.userInputs, this.props.language);
         let zxcvbnScore = zxcvbnResult.score + 1;
 
         // add on - check for all numbers
@@ -287,16 +299,16 @@ export default class Enzoic extends Component {
     }
 
     formatTooltipContent({title, message, suggestions}) {
-        let result = "<div class='Enzoic-tooltip is-strength-" + this.state.score +  "'>" +
-                "<div class='Enzoic-tooltip-title'>" +
-                    title +
-                "</div>" +
-                "<div class='Enzoic-tooltip-body'>" +
-                    "<div>" + message + "</div>";
+        let result = "<div class='Enzoic-tooltip is-strength-" + this.state.score + "'>" +
+            "<div class='Enzoic-tooltip-title'>" +
+            title +
+            "</div>" +
+            "<div class='Enzoic-tooltip-body'>" +
+            "<div>" + message + "</div>";
 
         if (suggestions && suggestions.length) {
             result += "<div class='Enzoic-tooltip-subtitle'>" +
-                    this.getStrings().suggestion + ":" +
+                this.getStrings().suggestion + ":" +
                 "</div>";
 
 
@@ -326,18 +338,19 @@ export default class Enzoic extends Component {
         switch (score) {
             case 0:
                 return <span>
-                    <img src={warning}
-                         style={{display: 'inline-block', position: 'relative', top: "-2px"}}/> {scoreWord} <img
-                    src={warning} style={{display: 'inline-block', position: 'relative', top: "-2px"}}/>
+                    <img src={warning} className="Enzoic-warning-icon"/>
+                    <span className="Enzoic-strength-desc-inner">{scoreWord}</span>
+                    <img src={warning} className="Enzoic-warning-icon"/>
                 </span>;
             case 1:
             case 2:
             case 3:
                 return <span>
-                    <img src={info} style={{display: 'inline-block'}}/> {scoreWord}
+                    <img src={info} className="Enzoic-info-icon"/>
+                    <span className="Enzoic-strength-desc-inner">{scoreWord}</span>
                 </span>;
             default:
-                return scoreWord;
+                return <span className="Enzoic-strength-desc-inner">{scoreWord}</span>;
         }
     }
 
@@ -350,16 +363,36 @@ export default class Enzoic extends Component {
     }
 
     getTooShortWord() {
-        return this.props.tooShortWord || this.getStrings().tooShort;
+        return <span className="Enzoic-strength-desc-inner"
+                     style={{marginLeft: "8px"}}>{this.props.tooShortWord || this.getStrings().tooShort}</span>;
+    }
+
+    renderInputComponent(InputComponentOverride, showPassword, password, inputClasses, inputProps) {
+        if (InputComponentOverride) {
+            return <InputComponentOverride
+                type={showPassword ? "text" : "password"}
+                {...inputProps}
+                className={inputClasses.join(' ')}
+                onChange={this.handleChange}
+                value={password}
+            />;
+        }
+        else {
+            return <input
+                type={showPassword ? "text" : "password"}
+                {...inputProps}
+                className={inputClasses.join(' ')}
+                onChange={this.handleChange}
+                value={password}
+            />;
+        }
     }
 
     render() {
-        const {score, password, isValid, loading} = this.state;
-
+        const {score, password, isValid, loading, showPassword} = this.state;
         const {
-            inputProps,
-            className,
-            style,
+            inputProps, className, style, showPasswordRevealButton, highlightStrengthBubble, inputComponent,
+            strengthBarStyle, scoreContainerOffset
         } = this.props;
 
         const inputClasses = ['Enzoic-input'];
@@ -393,21 +426,30 @@ export default class Enzoic extends Component {
 
         return (
             <div className={wrapperClasses.join(' ')} style={style}>
-                <input
-                    type="password"
-                    {...inputProps}
-                    className={inputClasses.join(' ')}
-                    onChange={this.handleChange}
-                    value={password}
-                />
-                <div className="Enzoic-strength-bar"/>
-                <span data-html={true} data-border={true}
-                      data-class={"Enzoic-tooltip-root"}
-                      data-effect={"solid"}
-                      data-type={"light"}
-                      data-tip={tooltip ? tooltip : ""}
-                      className="Enzoic-strength-desc">{strengthDesc}</span>
+                {this.renderInputComponent(inputComponent, showPassword, password, inputClasses, inputProps)}
+                <div className="Enzoic-strength-bar" style={strengthBarStyle}/>
+                {password &&
+                <div className="Enzoic-strength-desc-container"
+                     style={{right: showPasswordRevealButton ? "34px" : "0px", marginTop: scoreContainerOffset + "px"}}>
+                    {highlightStrengthBubble && <div className="Enzoic-pulse-strength-desc"/>}
+                    <div data-html={true} data-border={true}
+                         data-class={"Enzoic-tooltip-root"}
+                         data-effect={"solid"}
+                         data-type={"light"}
+                         data-tip={tooltip ? tooltip : ""}
+                         className="Enzoic-strength-desc">
+                        {strengthDesc}
+                    </div>
+                </div>}
                 {!loading && password && <ReactTooltip/>}
+                {password && showPasswordRevealButton &&
+                <div onClick={() => this.setState({showPassword: !showPassword})}
+                     className="Enzoic-show-password-container"
+                    style={{marginTop: scoreContainerOffset + "px"}}>
+                    {!!password && showPassword && <img src={eyeOff} className="Enzoic-show-password-icon"/>}
+                    {!!password && !showPassword && <img src={eye} className="Enzoic-show-password-icon"/>}
+                </div>
+                }
             </div>
         );
     }

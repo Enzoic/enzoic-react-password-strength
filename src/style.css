@@ -13,57 +13,113 @@
     box-sizing: border-box;
     font-size: 18px;
     padding: 14px 0 12px 14px;
-    width: calc(85% - 28px);
+    width: 100%;
 }
 
-.Enzoic-input:not(:focus).is-password-invalid {
-    color: #D1462F;
-}
+/*.Enzoic-input:not(:focus).is-password-invalid {*/
+/*    color: #D1462F;*/
+/*}*/
 
 .Enzoic-input:focus {
     outline: none;
 }
 
-.Enzoic-strength-desc {
-    color: transparent;
+.Enzoic-strength-desc-container {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 34px;
+    height: 28px;
+    margin: 0 6px 0 0;
+}
+
+.Enzoic-strength-desc {
+    color: transparent;
     transform: translateY(-50%);
     text-align: right;
     transition: color 250ms ease-in-out;
-    max-width: 130px;
-    padding: 1px 4px !important;
-    margin: 0 6px 0 0;
-    display: inline;
+    padding: 0;
     background: transparent;
-    font: bold normal normal 11px/20px Helvetica Neue, Helvetica, "MS Sans Serif" !important;
-    border-radius: 10px !important;
+    font: bold normal normal 13px/20px Helvetica Neue, Helvetica, "MS Sans Serif" !important;
+    border-radius: 14px !important;
     cursor: pointer;
+    height: 28px;
+    z-index: 1;
+}
+
+.Enzoic-strength-desc .Enzoic-strength-desc-inner {
+    line-height: 27px;
+    vertical-align: middle;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.Enzoic-pulse-strength-desc {
+    width: 100%;
+    height: 28px;
+    position: absolute;
+    top: -14px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 14px;
+    -webkit-animation: Enzoic-pulse-scaleout 1.0s infinite ease-in-out;
+    animation: Enzoic-pulse-scaleout 1.0s infinite ease-in-out;
+    display: block;
+}
+
+.Enzoic.is-strength-4 .Enzoic-pulse-strength-desc,
+.Enzoic.is-strength-5 .Enzoic-pulse-strength-desc {
+    display: none;
+}
+
+.Enzoic.is-strength-0 .Enzoic-strength-desc .Enzoic-strength-desc-inner {
+    margin: 0;
+}
+
+.Enzoic.is-strength-1 .Enzoic-strength-desc .Enzoic-strength-desc-inner,
+.Enzoic.is-strength-2 .Enzoic-strength-desc .Enzoic-strength-desc-inner,
+.Enzoic.is-strength-3 .Enzoic-strength-desc .Enzoic-strength-desc-inner {
+    margin-left: 0;
 }
 
 .Enzoic-strength-desc img {
     vertical-align: middle;
-    position: relative;
-    top: -1px;
 }
 
-.Enzoic.is-strength-0 .Enzoic-strength-desc {
+.Enzoic-strength-desc .Enzoic-warning-icon {
+    display: inline-block;
+    width: 18px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.Enzoic-strength-desc .Enzoic-info-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+}
+
+.Enzoic.is-strength-0 .Enzoic-strength-desc,
+.Enzoic.is-strength-0 .Enzoic-pulse-strength-desc {
     color: #FFFFFF;
     background-color: #ff0000;
 }
 
-.Enzoic.is-strength-1 .Enzoic-strength-desc {
+.Enzoic.is-strength-1 .Enzoic-strength-desc,
+.Enzoic.is-strength-1 .Enzoic-pulse-strength-desc  {
     color: #FFFFFF;
     background-color: #ff0000;
 }
 
-.Enzoic.is-strength-2 .Enzoic-strength-desc {
+.Enzoic.is-strength-2 .Enzoic-strength-desc,
+.Enzoic.is-strength-2 .Enzoic-pulse-strength-desc  {
     color: #FFFFFF;
     background-color: #ff0000;
 }
 
-.Enzoic.is-strength-3 .Enzoic-strength-desc {
+.Enzoic.is-strength-3 .Enzoic-strength-desc,
+.Enzoic.is-strength-3 .Enzoic-pulse-strength-desc  {
     color: #FFFFFF;
     background-color: #57B8FF;
 }
@@ -126,8 +182,10 @@
 .Enzoic-spinner {
     width: 40px;
     height: 40px;
-    margin: 100px auto;
     background-color: #333;
+    position: absolute;
+    top: -6px;
+    right: 20px;
 
     border-radius: 100%;
     -webkit-animation: Enzoic-sk-scaleout 1.0s infinite ease-in-out;
@@ -151,6 +209,30 @@
           transform: scale(1.0);
           opacity: 0;
       }
+}
+
+@-webkit-keyframes Enzoic-pulse-scaleout {
+    0% {
+        -webkit-transform: scale(1, 1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes Enzoic-pulse-scaleout {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.5);
+        transform: scale(1.2, 1.5);
+        opacity: 0;
+    }
 }
 
 .Enzoic-tooltip-root {
@@ -216,4 +298,27 @@
 @keyframes fadeIn {
     0% {opacity:0;}
     100% {opacity:1;}
+}
+
+.Enzoic-show-password-container {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: right;
+    transition: color 250ms ease-in-out;
+    max-width: 130px;
+    padding: 0;
+    margin: 0 6px 0 0;
+    display: inline;
+    background: transparent;
+    font: bold normal normal 13px/20px Helvetica Neue, Helvetica, "MS Sans Serif" !important;
+    border-radius: 14px !important;
+    height: 28px;
+    cursor: pointer;
+}
+
+.Enzoic-show-password-icon {
+    height: 28px;
+    width: 28px;
 }

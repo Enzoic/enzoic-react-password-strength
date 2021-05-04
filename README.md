@@ -41,13 +41,39 @@ Using in a __Universal JS App__ (server-side rendering):
 
 ### Props
 
-#### ClassName
+#### changeCallback
+
+- Callback after input has changed (and score was recomputed)
+- React Password Strength passes two objects to the callback function:
+    - current app state (`score`, `password`, `isValid`)
+    - full result produced by [zxcvbn](https://github.com/dropbox/zxcvbn) including `feedback` (see docs for more properties)
+
+#### className
 
 - ClassName to render with default container classes
 
-#### Style
+#### defaultValue
 
-- Style object to customize container
+- A default value to set for the password field. If a non-empty string is provided the `changeCallback` will be called in `componentDidMount`.
+
+#### highlightStrengthBubble
+
+- When true, pulses the strength bubble whenever it is clickable to better call attention to it from the user.  CLicking the strength bubble provides more information when a password is weak or compromised.
+
+#### inputComponent
+
+- Optionally provide a different input component than the React Native default TextInput to use.
+
+#### inputProps
+
+- Props to pass down to the `input` element of the component. Things like `name`, `id`, etc
+- Protected props: `className`, `onChange`, `value`
+    - Passing in `className` will append to the existing classes
+    - The remaining props will be ignored
+
+#### language (Default: en)
+
+- An ISO 639-1 language code for which language to display strings in.  Currently supported: English (en), French (fr), Spanish (es), German (de), Portuguese (pt), and Italian (it).
 
 #### minLength (Default: 8)
 
@@ -67,31 +93,29 @@ Using in a __Universal JS App__ (server-side rendering):
 - Scores of 0-3 will have a hover popup available indicating reasons for the score and suggestions to improve it.
 - Scores 4-5 (Strong, Very Strong) will not have a popup value
 
+#### scoreContainerOffset
+
+- By default the score container (e.g. Strong, Weak, etc.) is vertically centered in the input element.  You can provide a positive or negative offset value to move it up or down.
+
 #### scoreWords (Default: ['Hacked', 'Very Weak', 'Weak', 'Medium', 'Strong', 'Very Strong'])
 
 - An array denoting the words used to describe respective score values in the UI
 
+#### showPasswordRevealButton
+
+- Boolean indicating whether to show the eye icon on the right side of the field which allows the user to show/hide the plaintext version of the password.  
+
+#### strengthBarStyle
+
+- Style object to customize the color coded strength bar which appears at the bottom of the input
+
+#### style
+
+- Style object to customize container
+
 #### tooShortWord (Default: 'Too Short')
 
 - A string to describe when password is too short (based on minLength prop).
-
-#### changeCallback
-
-- Callback after input has changed (and score was recomputed)
-- React Password Strength passes two objects to the callback function:
-    - current app state (`score`, `password`, `isValid`)
-    - full result produced by [zxcvbn](https://github.com/dropbox/zxcvbn) including `feedback` (see docs for more properties)
-
-#### inputProps
-
-- Props to pass down to the `input` element of the component. Things like `name`, `id`, etc
-- Protected props: `className`, `onChange`, `value`
-  - Passing in `className` will append to the existing classes
-  - The remaining props will be ignored
-
-#### defaultValue
-
-- A default value to set for the password field. If a non-empty string is provided the `changeCallback` will be called in `componentDidMount`.
 
 #### userInputs
 

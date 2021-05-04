@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@enzoic/enzoic-react-password-strength": "file:..",
+    "@material-ui/core": "^4.11.4",
     "react": "^16.13.1",
     "react-dom": "^16.8.3",
     "react-scripts": "1.0.17"

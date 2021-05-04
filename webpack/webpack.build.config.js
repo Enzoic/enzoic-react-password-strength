@@ -23,6 +23,17 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader'
             },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-url-loader',
+                        options: {
+                            limit: 10000,
+                        },
+                    },
+                ],
+            }
         ],
     },
     externals: {
