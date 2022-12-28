@@ -67,7 +67,7 @@ export default class App extends React.Component {
                     minLength={6}
                     language={"en"}
                     inputComponent={TextField}
-                    inputProps={{label: "Enter Password", id: "inputPassword3"}}
+                    inputProps={{label: "Enter Password", id: "inputPassword3", variant: "outlined", margin: "normal", fullWidth: true}}
                     style={{border: 0}}
                     strengthBarStyle={{top: "-2px", height: "3px"}}
                     scoreContainerOffset={3}
