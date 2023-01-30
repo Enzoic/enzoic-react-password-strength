@@ -28,7 +28,7 @@ export default class Enzoic extends Component {
         language: PropTypes.string,
         showPasswordRevealButton: PropTypes.bool,
         highlightStrengthBubble: PropTypes.bool,
-        inputComponent: PropTypes.object,
+        inputComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
         inputStyles: PropTypes.object,
         strengthBarStyle: PropTypes.object,
         scoreContainerOffset: PropTypes.number,
